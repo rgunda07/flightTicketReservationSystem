@@ -32,7 +32,7 @@ public class FlightController {
             @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate departDate,
             ModelMap modelMap) {
 
-//        // This remains the same - the repository implementation handles the DynamoDB query
+//      This remains the same - the repository implementation handles the DynamoDB query
         List<Flight> flights = flightRepository.findFlights(
                 source,
                 destination,
