@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/lib/bootstrap/dist/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/app.css}" />
+    <title>My Bookings</title>
+</head>
+<body>
+<div th:replace="fragments/header :: body"></div>
+
+<div class="container mt-5">
+    <div class="p-4 rounded shadow-sm" style="background-color: #f8f9fa;">
+        <h3 class="mb-4">My Bookings</h3>
+
+        <div th:if="${bookings.isEmpty()}" class="alert alert-info">
+            You have no bookings yet.
+        </div>
+
+        <div th:if="${!bookings.isEmpty()}" class="table-responsive">
+            <table class="table table-hover">
+                <thead class="thead-light">
+                <tr>
+                    <th>Reservation ID</th>
+                    <th>Flight #</th>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Bags</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="res : ${bookings}">
+                    <td th:text="${res.id}"></td>
+                    <td th:text="${res.flight.flightNumber}"></td>
+                    <td th:text="${res.flight.departureCity}"></td>
+                    <td th:text="${res.flight.arrivalCity}"></td>
+                    <td th:text="${res.flight.dateOfDeparture}"></td>
+                    <td th:text="${res.flight.estimatedDepartureTime}"></td>
+                    <td th:text="${res.numberOfBags}">0</td>
+                    <td>
+                        <a th:href="@{|/reservations/${res.id}/edit|}"
+                           class="btn btn-sm btn-primary">
+                            Edit
+                        </a>
+                        <form th:action="@{/reservations/{id}/delete(id=${res.id})}"
+                              method="post" th:onsubmit="return confirm('Cancel this booking?')"
+                              style="display:inline">
+                            <button type="submit"
+                                    class="btn btn-sm btn-danger">Cancel</button>
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script th:src="@{/lib/jquery/dist/jquery.min.js}"></script>
+</body>
+</html>

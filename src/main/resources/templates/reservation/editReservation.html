@@ -1,0 +1,39 @@
+
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" th:href="@{/lib/bootstrap/dist/css/bootstrap.min.css}"/>
+  <link rel="stylesheet" th:href="@{/css/app.css}"/>
+  <title>Edit Booking</title>
+</head>
+<body>
+<div th:replace="fragments/header :: body"></div>
+<div class="container mt-5">
+  <div class="p-4 rounded shadow-sm" style="background-color: #f8f9fa;">
+    <h3>Edit Reservation #<span th:text="${reservation.id}"></span></h3>
+    <form th:object="${reservation}"
+          th:action="@{|/reservations/${reservation.id}/edit|}"
+          method="post">
+
+      <div class="form-group">
+        <label for="numberOfBags">Number of Bags</label>
+        <input type="number"
+               th:field="*{numberOfBags}"
+               id="numberOfBags"
+               class="form-control"
+               min="0"
+               required/>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Save</button>
+      <a th:href="@{/reservations/myBookings}"
+         class="btn btn-secondary ml-2">Cancel</a>
+    </form>
+
+  </div>
+</div>
+<script th:src="@{/lib/jquery/dist/jquery.min.js}"></script>
+</body>
+</html>

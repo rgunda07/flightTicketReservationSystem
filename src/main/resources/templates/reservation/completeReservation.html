@@ -1,0 +1,182 @@
+
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet"
+          th:href="@{/lib/bootstrap/dist/css/bootstrap.min.css}" />
+    <link rel="stylesheet"
+          th:href="@{/css/app.css}" />
+    <title>Complete Reservation</title>
+</head>
+<body>
+<div th:replace="fragments/header :: body"></div>
+
+<div class="container">
+    <div class="form_complete_reserve">
+        <h2 class="box-heading">Review and Complete Reservation</h2>
+        <br>
+        <form method="post"
+              th:action="@{/reservations/complete}"
+              th:object="${reservationRequest}">
+
+            <small class="form-text text-muted"><strong>Flight Details</strong></small>
+
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">From</label>
+                <div class="col-sm-8">
+                    <input type="text"
+                           class="form-control"
+                           th:value="${flight.departureCity}"
+                           readonly />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">To</label>
+                <div class="col-sm-8">
+                    <input type="text"
+                           class="form-control"
+                           th:value="${flight.arrivalCity}"
+                           readonly />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">Operating Airlines</label>
+                <div class="col-sm-8">
+                    <input type="text"
+                           class="form-control"
+                           th:value="${flight.operatingAirlines}"
+                           readonly />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">Estimated Departure</label>
+                <div class="col-sm-8">
+                    <input type="text"
+                           class="form-control"
+                           th:value="${flight.estimatedDepartureTime}"
+                           readonly />
+                </div>
+            </div>
+
+            <!-- bind the flight ID -->
+            <input type="hidden"
+                   th:field="*{flightId}" />
+
+            <small class="form-text text-muted"><strong>Passenger Details</strong></small>
+
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">First Name</label>
+                <div class="col-sm-8">
+                    <input type="text"
+                           th:field="*{passengerFirstName}"
+                           class="form-control"
+                           placeholder="First Name"
+                           required />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">Middle Name</label>
+                <div class="col-sm-8">
+                    <input type="text"
+                           th:field="*{passengerMiddleName}"
+                           class="form-control"
+                           placeholder="Middle Name"
+                           required />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">Last Name</label>
+                <div class="col-sm-8">
+                    <input type="text"
+                           th:field="*{passengerLastName}"
+                           class="form-control"
+                           placeholder="Last Name"
+                           required />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">Email</label>
+                <div class="col-sm-8">
+                    <input type="email"
+                           th:field="*{passengerEmail}"
+                           class="form-control"
+                           placeholder="you@example.com"
+                           required />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">Phone Number</label>
+                <div class="col-sm-8">
+                    <input type="text"
+                           th:field="*{passengerPhoneNumber}"
+                           class="form-control"
+                           placeholder="123-456-7890"
+                           required />
+                </div>
+            </div>
+
+            <small class="form-text text-muted"><strong>Card Details</strong></small>
+
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">Name on Card</label>
+                <div class="col-sm-8">
+                    <input type="text"
+                           th:field="*{nameOnCard}"
+                           class="form-control"
+                           placeholder="Cardholder Name"
+                           required />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">Credit Card Number</label>
+                <div class="col-sm-8">
+                    <input type="text"
+                           th:field="*{cardNumber}"
+                           class="form-control"
+                           placeholder="0000 0000 0000 0000"
+                           required />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">Expiration Date</label>
+                <div class="col-sm-8">
+                    <input type="text"
+                           th:field="*{cardExpiration}"
+                           class="form-control"
+                           placeholder="MM/YY"
+                           required />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">Security Code</label>
+                <div class="col-sm-8">
+                    <input type="password"
+                           th:field="*{secCode}"
+                           class="form-control"
+                           placeholder="CVV"
+                           required />
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-lg btn-success">Reserve</button>
+        </form>
+    </div>
+</div>
+<script th:src="@{/lib/jquery/dist/jquery.min.js}"></script>
+</body>
+</html>
+

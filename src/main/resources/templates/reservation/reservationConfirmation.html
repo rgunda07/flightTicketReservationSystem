@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" th:href="@{/lib/bootstrap/dist/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/app.css}" />
+    <title>Reservation Confirmation</title>
+</head>
+<body>
+<div th:replace="fragments/header :: body"></div>
+<div class="container mt-5">
+    <div th:if="${msg}" class="alert alert-success text-center">
+        <h4 th:text="${msg}"></h4>
+    </div>
+    <div class="text-center mt-4">
+        <a th:href="@{/findFlights}" class="btn btn-primary btn-lg">
+            Book Another Flight
+        </a>
+    </div>
+</div>
+<script th:src="@{/lib/jquery/dist/jquery.min.js}"></script>
+</body>
+</html>
